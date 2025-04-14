@@ -14,7 +14,7 @@ function GlobalState({ children }){
     return (
         <GlobalContext.Provider value={{ theme, setTheme, handleChangeTheme }}>
             {children}
-        <GlobalContext.Provider>
+        </GlobalContext.Provider>
     )
 }
 

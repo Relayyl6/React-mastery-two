@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import useFetch from "../../hooks/use-fetch"
 
 
@@ -10,11 +10,13 @@ function RecipeList() {
     const {data, pending, errorMsg} = useFetch(
         'https://dummyjson.com/recipes'
     );
+    // const {id} = useParams()
 
     // console.log(result);
     
+    if (errorMsg) return <h1>Failed to load</h1>
 
-    // if(pending) return <h1>Fetching recipes. Please wait!</h1>
+    if (pending) return <h1>Fetching recipes. Please wait!</h1>
     
     return (
         <>
@@ -45,11 +47,11 @@ function RecipeList() {
                                         fontSize : '20px',
                                         padding : '5px',
                                         marginLeft : '20px'
-                                    }}>{recipesItem?.name}</label>
+                                    }}> <Link style={{ textDecoration : 'none ' }} to={`/home/recipe-list/${recipesItem?.id}`}>{recipesItem?.name}</Link></label>
                                 <img src={recipesItem?.image} style={{ 
                                                             maxWidth : '200px',
                                                             maxHeight : '100px',
-                                                            border : '2px solid black',
+                                                            border : '1px solid black',
                                                             borderRadius : '5px',
                                                             marginRight : '20px'
                                                             }}/>
